@@ -2,14 +2,14 @@ $schema: https://learning-contents.org/schemas/worked-example/0.1.0
 source: BankAccount.java
 license: MIT
 locale: en-US
-id: we_bank_account_java
-title: Bank Account Management in Java
-description: Learn how to use classes, constructors, and methods to manage a bank account in Java.
+id: we_bank_account
+title: Bank Account Management
+description: Learn how to use classes and methods to manage a bank account in Java.
 authors:
   - first: Jone
     last: Doe
     email: jone.doe@example.com
-    affiliation: University of Pittsburgh
+    affiliation: University of John Doe
 pedagogy:
   activity: worked-example
   difficulty: novice
@@ -17,15 +17,14 @@ pedagogy:
   topics:
     - classes
     - state
-    - methods
 runtime:
   language: java
   version: 17
 statement: |
   This worked example demonstrates how the `BankAccount` class manages state in Java. We'll examine:
-  1. Class constructor (`public BankAccount(...)`)
+  1. Class constructor (`BankAccount`)
   2. Deposit method (`deposit`)
-  3. Withdrawal method with validation (`withdraw`)
+  3. Withdrawal method (`withdraw`)
 executions:
   - title: Bob's Account
     stdin: []
@@ -44,16 +43,19 @@ elements:
       snippet: "public BankAccount(String owner, int balance) {"
     explanations:
       - body: |
-          The constructor initializes the account owner and starting balance in Java:
+          The constructor initializes the account owner and starting balance. In Java, this is written as:
           ```java
           public BankAccount(String owner, int balance) {
               this.owner = owner;
               this.balance = balance;
           }
           ```
+          The fields `owner` and `balance` are assigned directly to the newly created instance.
+      - body: |
+          ...
   - type: explanation
     location:
-      snippet: "if (amount > 0 && amount <= this.balance) {"
+      snippet: "if (0 < amount && amount <= this.balance) {"
     explanations:
       - body: |
-          This condition validates that the withdrawal transaction is correct: it checks that `amount > 0` and is less than or equal to `this.balance`.
+          This condition validates that the withdrawal transaction is correct: it checks if the `amount` is greater than `0` and is less than or equal to the current `this.balance`.

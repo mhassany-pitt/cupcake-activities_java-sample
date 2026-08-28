@@ -1,17 +1,17 @@
 $schema: https://learning-contents.org/schemas/multiple-choice-question/0.1.0
 license: MIT
 locale: en-US
-id: mcq_bank_account_deposit_java
-title: Java BankAccount Deposit Method
+id: mcq_bank_account_deposit
+title: Java Class Deposit Method
 description: Choose the correct implementation of the deposit method in Java.
 authors:
   - first: Jone
     last: Doe
     email: jone.doe@example.com
-    affiliation: University of Pittsburgh
+    affiliation: University of John Doe
 pedagogy:
   activity: multiple-choice-question
-  difficulty: novice
+  difficulty: intermediate
   prereq_topics:
     - classes
   topics:
@@ -20,11 +20,11 @@ pedagogy:
 include_choices: 3
 question: |
   Given the following Java class definition for `BankAccount`:
-
+  
   ```java
   public class BankAccount {
-      private String owner;
-      private int balance;
+      public String owner;
+      public int balance;
 
       public BankAccount(String owner, int balance) {
           this.owner = owner;
@@ -32,16 +32,17 @@ question: |
       }
   }
   ```
-
-  Which of the following represents the correct Java method definition for `deposit` that adds a positive `amount` to `this.balance` and returns the new balance?
+  
+  Which of the following represents the correct implementation for a `deposit` method in Java that adds a positive `amount` to the account balance and returns the new balance?
 choices:
   - body: |
       ```java
       public int deposit(int amount) {
           if (amount > 0) {
               this.balance += amount;
+              return this.balance;
           }
-          return this.balance;
+          throw new IllegalArgumentException("Deposit amount must be positive");
       }
       ```
     role: solution
@@ -49,12 +50,13 @@ choices:
     order: 1
     explanations:
       - body: |
-          This is correct. It verifies that `amount > 0`, updates the instance field `this.balance` using the `+=` operator, and returns the updated `int` balance.
+          This is the correct implementation. It verifies that the deposit `amount` is positive (`amount > 0`), updates the instance field `this.balance` using the `+=` operator, and returns the updated balance. It also correctly throws an `IllegalArgumentException` for invalid amounts.
   - body: |
       ```java
-      public void deposit(int amount) {
+      public int deposit(int amount) {
           if (amount > 0) {
               int balance = balance + amount;
+              return balance;
           }
           return balance;
       }
@@ -62,15 +64,19 @@ choices:
     role: distractor
     explanations:
       - body: |
-          Incorrect. The return type is declared as `void` but attempts to return a value. In addition, `int balance = balance + amount;` declares a local variable shadowing the instance field.
+          Incorrect. In Java, declaring `int balance = ...` inside the method creates a shadowed local variable instead of updating the instance variable `this.balance`.
   - body: |
       ```java
       public int deposit(int amount) {
-          this.balance = amount;
+          this.balance =+ amount;
           return this.balance;
       }
       ```
     role: distractor
     explanations:
       - body: |
-          Incorrect. This overwrites `this.balance` with `amount` rather than adding to the existing balance, and does not check for positive amounts.
+          Incorrect. The operator `=+` in Java assigns positive `amount` (`this.balance = +amount`), which overwrites the balance rather than adding to it. The correct operator is `+=`.
+  - body: None
+    role: distractor
+    include: always
+    order: 2

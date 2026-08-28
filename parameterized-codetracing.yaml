@@ -1,36 +1,34 @@
 $schema: https://learning-contents.org/schemas/parameterized-code-tracing/0.1.0
-source: BankAccount.java
 license: MIT
 locale: en-US
-id: pct_bank_account_java
-title: Bank Account Code Tracing in Java
-description: Trace the execution of a Java BankAccount program with different starting balance and deposit values.
+id: parameterized_code_tracing_id
+source: BankAccount.java
+title: Deposit/Withdraw from Bank Account
+description: This program simulates a bank account.
 authors:
-  - first: Jone
-    last: Doe
-    email: jone.doe@example.com
-    affiliation: University of Pittsburgh
+  - first: First
+    last: Last
+    email: author@example.com
+    affiliation: University
 pedagogy:
   activity: parameterized-code-tracing
   difficulty: novice
-  prereq_topics: []
-  topics:
-    - classes
-    - state
-    - methods
+  prereq_topics: [basics]
+  topics: [basics, loops]
 runtime:
   language: java
   version: 17
 statement: |
-  Trace what this Java program outputs when the starting balance and deposit amounts are varied.
+  Determine the exact **output** of the code tracing execution.
+  The program initializes a `BankAccount` with a starting balance and executes a sequence of `deposit` and `withdraw` method calls.
 elements:
   - type: parameter
     location:
+      context: 'BankAccount account = new BankAccount("Bob", 200);'
       snippet: "200"
-      context: "new BankAccount(\"Bob\", 200)"
     values: [100, 200, 300]
   - type: parameter
     location:
+      context: "account.deposit(100);"
       snippet: "100"
-      context: "account.deposit(100)"
-    values: [50, 100, 150]
+    values: [100, 200, 300]

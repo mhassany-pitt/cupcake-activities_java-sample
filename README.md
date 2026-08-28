@@ -1,15 +1,30 @@
-# Cupcake Java Activity Samples
+# Cupcake Java Sample Activities
 
-This directory contains complete sample activities for each supported activity type using Java 17+.
+Canonical sample of how Cupcake activity types are authored in Java.
 
-## Files
+One shared `BankAccount.java` plus YAML definitions for each supported activity type (Learning Contents schemas).
 
-* **`BankAccount.java`**: The target Java source file demonstrating class fields, constructor, `deposit`, `withdraw`, `getBalance`, and a `main` method.
-* **`worked-example.yaml`**: **Worked Example** activity explaining constructor and method mechanics with structured step-by-step annotations.
-* **`code-completion.yaml`**: **Code Completion** activity where the student fills in missing statement tokens from multiple options.
-* **`parsons-puzzle.yaml`**: **Parsons Puzzle** activity where the student arranges lines and selects correct blocks.
-* **`free-coding.yaml`**: **Free Coding** activity where the student directly edits blue highlighted regions in the code.
-* **`parameterized-codetracing.yaml`**: **Parameterized Code Tracing** activity where parameter values are substituted into the code and students predict program output.
-* **`multiple-choice.yaml`**: **Multiple Choice Question** activity testing comprehension of Java syntax and method design.
+## Activity types
 
-> **Note**: `macro-visualization` uses JSVEE / Python AST transpilation and is Python-only.
+| File | Activity type |
+|------|----------------|
+| `worked-example.yaml` | Worked example |
+| `code-completion.yaml` | Code completion |
+| `free-coding.yaml` | Free coding |
+| `parsons-puzzle.yaml` | Parsons puzzle |
+| `multiple-choice.yaml` | Multiple choice |
+| `parameterized-codetracing.yaml` | Parameterized code tracing |
+
+> *Note: Macro-visualization is Python-only as it relies on Python AST instrumentation and JSVEE.*
+
+## Layout
+
+```
+BankAccount.java
+worked-example.yaml
+code-completion.yaml
+free-coding.yaml
+parsons-puzzle.yaml
+multiple-choice.yaml
+parameterized-codetracing.yaml
+```

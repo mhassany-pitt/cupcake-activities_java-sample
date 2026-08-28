@@ -1,6 +1,6 @@
 public class BankAccount {
-    private String owner;
-    private int balance;
+    public String owner;
+    public int balance;
 
     public BankAccount(String owner, int balance) {
         this.owner = owner;
@@ -9,15 +9,15 @@ public class BankAccount {
 
     public int deposit(int amount) {
         if (amount > 0) {
-            this.balance += amount;
+            this.balance = this.balance + amount;
             System.out.println("Deposited " + amount);
         }
         return this.balance;
     }
 
     public int withdraw(int amount) {
-        if (amount > 0 && amount <= this.balance) {
-            this.balance -= amount;
+        if (0 < amount && amount <= this.balance) {
+            this.balance = this.balance - amount;
             System.out.println("Withdrew " + amount);
         } else {
             System.out.println("Insufficient funds");
@@ -25,18 +25,10 @@ public class BankAccount {
         return this.balance;
     }
 
-    public int getBalance() {
-        return this.balance;
-    }
-
-    public String getOwner() {
-        return this.owner;
-    }
-
     public static void main(String[] args) {
         BankAccount account = new BankAccount("Bob", 200);
         account.deposit(100);
         account.withdraw(50);
-        System.out.println("Balance: " + account.getBalance());
+        System.out.println("Balance: " + account.balance);
     }
 }

@@ -2,29 +2,33 @@ $schema: https://learning-contents.org/schemas/free-coding/0.1.0
 source: BankAccount.java
 license: MIT
 locale: en-US
-id: fc_bank_account_java
-title: Bank Account Free Coding in Java
-description: Implement withdrawal validation in Java.
+id: free_coding_bank_account
+title: Bank Account Management
+description: Implement and test bank account methods.
 authors:
   - first: Jone
     last: Doe
     email: jone.doe@example.com
-    affiliation: University of Pittsburgh
+    affiliation: University of John Doe
 pedagogy:
   activity: free-coding
   difficulty: novice
-  prereq_topics: []
-  topics:
-    - classes
-    - state
-    - methods
+  prereq_topics: [classes]
+  topics: [classes, methods, state]
 runtime:
   language: java
   version: 17
 statement: |
-  Modify the withdrawal check in `withdraw` so that withdrawals only happen when `amount > 0 && amount <= this.balance`.
+  Implement a `transfer` method or sequence in `main` to move money from one `BankAccount` to another.
+  The method signature in Java can be:
+  ```java
+  public void transfer(BankAccount targetAccount, int amount) {
+      // Your implementation here
+  }
+  ```
+  Ensure that money is withdrawn from the current account only if funds are sufficient, and deposited into the target account.
 executions:
-  - title: Bob's Account
+  - title: Transfer Alice to Bob
     stdin: []
     stdout: |-
       Deposited 100
@@ -36,6 +40,54 @@ executions:
       Balance: 250
     status: pass
 elements:
+  - type: locked
+    location:
+      snippet: |-
+        public class BankAccount {
+            public String owner;
+            public int balance;
+
+            public BankAccount(String owner, int balance) {
+                this.owner = owner;
+                this.balance = balance;
+            }
+
+            public int deposit(int amount) {
+                if (amount > 0) {
+                    this.balance = this.balance + amount;
+                    System.out.println("Deposited " + amount);
+                }
+                return this.balance;
+            }
+
+            public int withdraw(int amount) {
+                if (0 < amount && amount <= this.balance) {
+                    this.balance = this.balance - amount;
+                    System.out.println("Withdrew " + amount);
+                } else {
+                    System.out.println("Insufficient funds");
+                }
+                return this.balance;
+            }
   - type: editable
     location:
-      snippet: "amount > 0 && amount <= this.balance"
+      snippet: |-
+        BankAccount account = new BankAccount("Bob", 200);
+                account.deposit(100);
+                account.withdraw(50);
+                System.out.println("Balance: " + account.balance);
+    placeholder: |-
+      // Implement transfer function here
+              // Then test it with acc1 and acc2
+testcases:
+  - title: Simple Transfer
+    visible: true
+    stdin: []
+    stdout: |-
+      Deposited 100
+      Withdrew 50
+      Balance: 250
+    console: |-
+      Deposited 100
+      Withdrew 50
+      Balance: 250
