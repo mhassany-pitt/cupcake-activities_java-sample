@@ -1,0 +1,54 @@
+$schema: https://learning-contents.org/schemas/parsons-puzzles/0.1.0
+source: BankAccount.java
+license: MIT
+locale: en-US
+id: pp_bank_account_java
+title: Bank Account Withdrawal Logic in Java
+description: Assemble the withdrawal logic in Java.
+authors:
+  - first: Jone
+    last: Doe
+    email: jone.doe@example.com
+    affiliation: University of Pittsburgh
+pedagogy:
+  activity: parsons-puzzles
+  difficulty: novice
+  prereq_topics: []
+  topics:
+    - classes
+    - state
+    - methods
+runtime:
+  language: java
+  version: 17
+statement: |
+  Construct the withdrawal logic by selecting the correct statement to deduct the withdrawn amount from `this.balance`.
+executions:
+  - title: Bob's Account
+    stdin: []
+    stdout: |-
+      Deposited 100
+      Withdrew 50
+      Balance: 250
+    console: |-
+      Deposited 100
+      Withdrew 50
+      Balance: 250
+    status: pass
+elements:
+  - type: block
+    location:
+      snippet: "            this.balance -= amount;"
+    choices:
+      - snippet: "            this.balance -= amount;"
+        role: solution
+        explanations:
+          - body: Correct! The balance is decreased by amount.
+      - snippet: "            this.balance += amount;"
+        role: distractor
+        explanations:
+          - body: This would deposit instead of withdraw.
+      - snippet: "            this.balance = amount;"
+        role: distractor
+        explanations:
+          - body: This assigns the amount instead of subtracting it.

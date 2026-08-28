@@ -1,0 +1,41 @@
+$schema: https://learning-contents.org/schemas/free-coding/0.1.0
+source: BankAccount.java
+license: MIT
+locale: en-US
+id: fc_bank_account_java
+title: Bank Account Free Coding in Java
+description: Implement withdrawal validation in Java.
+authors:
+  - first: Jone
+    last: Doe
+    email: jone.doe@example.com
+    affiliation: University of Pittsburgh
+pedagogy:
+  activity: free-coding
+  difficulty: novice
+  prereq_topics: []
+  topics:
+    - classes
+    - state
+    - methods
+runtime:
+  language: java
+  version: 17
+statement: |
+  Modify the withdrawal check in `withdraw` so that withdrawals only happen when `amount > 0 && amount <= this.balance`.
+executions:
+  - title: Bob's Account
+    stdin: []
+    stdout: |-
+      Deposited 100
+      Withdrew 50
+      Balance: 250
+    console: |-
+      Deposited 100
+      Withdrew 50
+      Balance: 250
+    status: pass
+elements:
+  - type: editable
+    location:
+      snippet: "amount > 0 && amount <= this.balance"

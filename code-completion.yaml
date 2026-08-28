@@ -1,0 +1,54 @@
+$schema: https://learning-contents.org/schemas/code-completion/0.1.0
+source: BankAccount.java
+license: MIT
+locale: en-US
+id: cc_bank_account_java
+title: Bank Account Deposit in Java
+description: Complete the deposit logic for the BankAccount class in Java.
+authors:
+  - first: Jone
+    last: Doe
+    email: jone.doe@example.com
+    affiliation: University of Pittsburgh
+pedagogy:
+  activity: code-completion
+  difficulty: novice
+  prereq_topics: []
+  topics:
+    - classes
+    - state
+    - methods
+runtime:
+  language: java
+  version: 17
+statement: |
+  Complete the `deposit` method in the `BankAccount` class so that it adds the deposited `amount` to `this.balance` and returns the updated balance.
+executions:
+  - title: Bob's Account
+    stdin: []
+    stdout: |-
+      Deposited 100
+      Withdrew 50
+      Balance: 250
+    console: |-
+      Deposited 100
+      Withdrew 50
+      Balance: 250
+    status: pass
+elements:
+  - type: blank
+    location:
+      snippet: "this.balance += amount;"
+    choices:
+      - snippet: "this.balance += amount;"
+        role: solution
+        explanations:
+          - body: Correct! Adding amount to this.balance updates the account balance.
+      - snippet: "this.balance -= amount;"
+        role: distractor
+        explanations:
+          - body: Subtracting amount would decrease the balance instead of depositing.
+      - snippet: "this.balance = amount;"
+        role: distractor
+        explanations:
+          - body: Assigning amount overwrites the previous balance rather than adding to it.

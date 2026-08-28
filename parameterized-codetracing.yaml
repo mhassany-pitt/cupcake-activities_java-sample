@@ -1,0 +1,36 @@
+$schema: https://learning-contents.org/schemas/parameterized-code-tracing/0.1.0
+source: BankAccount.java
+license: MIT
+locale: en-US
+id: pct_bank_account_java
+title: Bank Account Code Tracing in Java
+description: Trace the execution of a Java BankAccount program with different starting balance and deposit values.
+authors:
+  - first: Jone
+    last: Doe
+    email: jone.doe@example.com
+    affiliation: University of Pittsburgh
+pedagogy:
+  activity: parameterized-code-tracing
+  difficulty: novice
+  prereq_topics: []
+  topics:
+    - classes
+    - state
+    - methods
+runtime:
+  language: java
+  version: 17
+statement: |
+  Trace what this Java program outputs when the starting balance and deposit amounts are varied.
+elements:
+  - type: parameter
+    location:
+      snippet: "200"
+      context: "new BankAccount(\"Bob\", 200)"
+    values: [100, 200, 300]
+  - type: parameter
+    location:
+      snippet: "100"
+      context: "account.deposit(100)"
+    values: [50, 100, 150]
