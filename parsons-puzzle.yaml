@@ -47,14 +47,12 @@ elements:
     group: bank-members
     location:
       snippet: |2-
-
             public BankAccount(String owner, int balance) {
                 this.owner = owner;
                 this.balance = balance;
             }
     choices:
       - snippet: |2-
-
               public BankAccount(String owner, int balance) {
                   this.owner = owner;
                   this.balance = balance;
@@ -76,7 +74,6 @@ elements:
     group: bank-members
     location:
       snippet: |2-
-
             public int deposit(int amount) {
                 if (amount > 0) {
                     this.balance = this.balance + amount;
@@ -86,7 +83,6 @@ elements:
             }
     choices:
       - snippet: |2-
-
               public int deposit(int amount) {
                   if (amount > 0) {
                       this.balance = this.balance + amount;
@@ -124,7 +120,6 @@ elements:
     group: bank-members
     location:
       snippet: |2-
-
             public int withdraw(int amount) {
                 if (0 < amount && amount <= this.balance) {
                     this.balance = this.balance - amount;
@@ -136,7 +131,6 @@ elements:
             }
     choices:
       - snippet: |2-
-
               public int withdraw(int amount) {
                   if (0 < amount && amount <= this.balance) {
                       this.balance = this.balance - amount;
