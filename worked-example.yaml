@@ -3,8 +3,8 @@ source: BankAccount.java
 license: MIT
 locale: en-US
 id: we_bank_account
-title: Bank Account Management
-description: Learn how to use classes and methods to manage a bank account in Java.
+title: Bank Account Management in Java
+description: Learn how to use Java classes, constructors, methods, and access control to manage object state.
 authors:
   - first: Jone
     last: Doe
@@ -13,18 +13,25 @@ authors:
 pedagogy:
   activity: worked-example
   difficulty: novice
-  prereq_topics: []
+  prereq_topics:
+    - basic-syntax
+    - variables
   topics:
     - classes
+    - constructors
+    - methods
     - state
+    - conditional-logic
 runtime:
   language: java
   version: 17
 statement: |
-  This worked example demonstrates how the `BankAccount` class manages state in Java. We'll examine:
-  1. Class constructor (`BankAccount`)
-  2. Deposit method (`deposit`)
-  3. Withdrawal method (`withdraw`)
+  This worked example demonstrates how `BankAccount` state and operations are modeled in Java using object-oriented classes and typed methods. We'll examine:
+  1. The `BankAccount` class declaration and member fields (`owner` and `balance`).
+  2. The constructor initializing instance fields via the `this` reference.
+  3. The `deposit` method with positive input validation.
+  4. The `withdraw` method with compound guard logic protecting against overdrafts.
+  5. The `main` driver method demonstrating object instantiation, method calls, and state inspection.
 executions:
   - title: Bob's Account
     stdin: []
@@ -40,22 +47,80 @@ executions:
 elements:
   - type: explanation
     location:
-      snippet: "public BankAccount(String owner, int balance) {"
+      snippet: |-
+        public class BankAccount {
+            public String owner;
+            public int balance;
     explanations:
       - body: |
-          The constructor initializes the account owner and starting balance. In Java, this is written as:
-          ```java
-          public BankAccount(String owner, int balance) {
-              this.owner = owner;
-              this.balance = balance;
-          }
-          ```
-          The fields `owner` and `balance` are assigned directly to the newly created instance.
-      - body: |
-          ...
+          ### 1. Class Declaration and Member Fields
+          * `public class BankAccount`: Declares a publicly accessible class in Java.
+          * `public String owner;` and `public int balance;`: Instance fields that define the state each `BankAccount` object will maintain. In Java, every field has an explicit static type (`String` and primitive `int`).
   - type: explanation
     location:
-      snippet: "if (0 < amount && amount <= this.balance) {"
+      snippet: |-
+            public BankAccount(String owner, int balance) {
+                this.owner = owner;
+                this.balance = balance;
+            }
     explanations:
       - body: |
-          This condition validates that the withdrawal transaction is correct: it checks if the `amount` is greater than `0` and is less than or equal to the current `this.balance`.
+          ### 2. Constructor Initialization
+          * `public BankAccount(String owner, int balance)`: The constructor method shares the name of the class and has no return type. It is invoked when creating new objects via `new BankAccount(...)`.
+          * In Java, constructor parameters `owner` and `balance` shadow the instance fields of the same name.
+          * Using `this.owner = owner;` and `this.balance = balance;` disambiguates and assigns the parameter values directly to the instance fields.
+  - type: explanation
+    location:
+      snippet: |-
+            public int deposit(int amount) {
+                if (amount > 0) {
+                    this.balance = this.balance + amount;
+                    System.out.println("Deposited " + amount);
+                }
+                return this.balance;
+            }
+    explanations:
+      - body: |
+          ### 3. The `deposit` Method
+          * **Input Validation**: `if (amount > 0)` acts as a guard condition ensuring that only positive amounts can be deposited, preventing invalid or negative inputs from corrupting the account balance.
+          * **State Mutation**: `this.balance = this.balance + amount;` credits the instance balance by adding `amount`.
+          * **Console Output**: `System.out.println("Deposited " + amount);` prints transaction confirmation to standard output using string concatenation.
+          * **Return Value**: `return this.balance;` returns the updated balance to the caller, satisfying the `int` return type.
+  - type: explanation
+    location:
+      snippet: |-
+            public int withdraw(int amount) {
+                if (0 < amount && amount <= this.balance) {
+                    this.balance = this.balance - amount;
+                    System.out.println("Withdrew " + amount);
+                } else {
+                    System.out.println("Insufficient funds");
+                }
+                return this.balance;
+            }
+    explanations:
+      - body: |
+          ### 4. The `withdraw` Method and Overdraft Protection
+          * **Compound Guard Condition**: `if (0 < amount && amount <= this.balance)` checks two conditions with the logical AND (`&&`):
+            1. `0 < amount`: The requested withdrawal must be positive.
+            2. `amount <= this.balance`: The requested amount must not exceed current funds (allowing full withdrawals down to 0).
+          * **Successful Debit**: When valid, `this.balance = this.balance - amount;` debits the account and prints confirmation.
+          * **Fallback Branch**: The `else` block catches overdraft attempts or invalid amounts by printing `"Insufficient funds"` without modifying `this.balance`.
+          * **Return Value**: Returns the current balance in all cases.
+  - type: explanation
+    location:
+      snippet: |-
+            public static void main(String[] args) {
+                BankAccount account = new BankAccount("Bob", 200);
+                account.deposit(100);
+                account.withdraw(50);
+                System.out.println("Balance: " + account.balance);
+            }
+    explanations:
+      - body: |
+          ### 5. Execution Flow in `main`
+          * `public static void main(String[] args)`: The standard entry point for Java applications.
+          * `BankAccount account = new BankAccount("Bob", 200);`: Instantiates a `BankAccount` object for `"Bob"` with an initial balance of `200`.
+          * `account.deposit(100);`: Invokes `deposit`, increasing balance to `300` and printing `"Deposited 100"`.
+          * `account.withdraw(50);`: Invokes `withdraw`, decreasing balance to `250` and printing `"Withdrew 50"`.
+          * `System.out.println("Balance: " + account.balance);`: Reads the public field `account.balance` to output the final balance (`"Balance: 250"`).
