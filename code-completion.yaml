@@ -42,104 +42,104 @@ executions:
       Deposited 100
       Withdrew 50
       Balance: 250
-    stderr: ""
+    stderr: ''
     status: pass
 elements:
   - type: blank
     location:
-      context: "public class BankAccount {"
-      snippet: "class"
+      context: public class BankAccount {
+      snippet: class
       nth: 1
     choices:
-      - snippet: "class"
+      - snippet: class
         role: solution
         explanations:
           - body: |
               Correct! In Java, the `class` keyword declares a blueprint containing fields, constructors, and methods.
-      - snippet: "interface"
+      - snippet: interface
         role: distractor
         explanations:
           - body: |
               Incorrect. In Java, an `interface` defines abstract method contracts and static constants; it cannot have instance field state or a standard constructor.
-      - snippet: "record"
+      - snippet: record
         role: distractor
         explanations:
           - body: |
               Incorrect. Java `record` declarations are immutable data carriers whose fields are implicitly `final` and cannot be mutated by a `deposit` or `withdraw` method.
-      - snippet: "struct"
+      - snippet: struct
         role: distractor
         explanations:
           - body: |
               Incorrect. `struct` is a keyword in C/C++/Rust/C#, but is not a valid keyword in Java.
   - type: blank
     location:
-      context: "this.balance = this.balance + amount;"
-      snippet: "+"
+      context: this.balance = this.balance + amount;
+      snippet: +
       nth: 1
     choices:
-      - snippet: "+"
+      - snippet: +
         role: solution
         explanations:
           - body: |
               Correct! The addition operator (`+`) adds the deposited `amount` to the current `this.balance`, crediting the account.
-      - snippet: "-"
+      - snippet: '-'
         role: distractor
         explanations:
           - body: |
               Incorrect. The subtraction operator (`-`) would deduct money from the account during a deposit instead of crediting it.
-      - snippet: "*"
+      - snippet: '*'
         role: distractor
         explanations:
           - body: |
               Incorrect. The multiplication operator (`*`) would multiply the existing balance by the deposit amount, yielding an incorrect balance.
-      - snippet: "="
+      - snippet: '='
         role: distractor
         explanations:
           - body: |
               Incorrect. Using `=` causes a compilation error or overwrites the balance with `amount` rather than accumulating funds.
   - type: blank
     location:
-      context: "if (0 < amount && amount <= this.balance) {"
-      snippet: "<="
+      context: if (0 < amount && amount <= this.balance) {
+      snippet: <=
       nth: 1
     choices:
-      - snippet: "<="
+      - snippet: <=
         role: solution
         explanations:
           - body: |
               Correct! The less-than-or-equal operator (`<=`) ensures the user has sufficient funds, allowing withdrawals up to and including the exact total balance without overdrafting.
-      - snippet: "<"
+      - snippet: <
         role: distractor
         explanations:
           - body: |
               Incorrect. The strictly-less-than operator (`<`) would prevent account holders from withdrawing their exact entire balance (withdrawing down to zero).
-      - snippet: ">="
+      - snippet: '>='
         role: distractor
         explanations:
           - body: |
               Incorrect. Using `>=` would invert the business logic, permitting withdrawals only when the amount is greater than or equal to the balance, guaranteeing an overdraft.
-      - snippet: ">"
+      - snippet: '>'
         role: distractor
         explanations:
           - body: |
               Incorrect. Using `>` would only permit transactions that exceed the current balance, causing an immediate overdraft into negative funds.
   - type: blank
     location:
-      context: "account.deposit(100);"
-      snippet: "deposit"
+      context: account.deposit(100);
+      snippet: deposit
       nth: 1
     choices:
-      - snippet: "deposit"
+      - snippet: deposit
         role: solution
         explanations:
           - body: |
               Correct! Invokes the `deposit` method with an argument of `100` to credit the account.
-      - snippet: "withdraw"
+      - snippet: withdraw
         role: distractor
         explanations:
           - body: |
               Incorrect. Invoking `withdraw(100)` would debit the account instead of performing the required deposit transaction.
-      - snippet: "balance"
+      - snippet: balance
         role: distractor
         explanations:
           - body: |
