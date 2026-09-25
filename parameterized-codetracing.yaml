@@ -31,6 +31,29 @@ statement: |
   * How the initial balance is modified after `deposit(...)`.
   * Whether the withdrawal amount exceeds the balance after deposit, triggering the `"Insufficient funds"` branch.
   * The final balance value output by `System.out.println("Balance: " + account.balance)`.
+testcases:
+  - title: Standard Trace Execution
+    visible: true
+    stdin: []
+    stdout: |-
+      Deposited 100
+      Withdrew 50
+      Balance: 250
+    console: |-
+      Deposited 100
+      Withdrew 50
+      Balance: 250
+    status: pass
+    hints:
+      - "Trace the parameter values step-by-step through each statement."
+      - "Check if the withdrawal amount exceeds the balance to determine which branch executes."
+    feedback:
+      - on_pass:
+          - explanations:
+              - "Correct trace! You tracked the state transitions and outputs accurately."
+        on_fail:
+          - explanations:
+              - "Your trace output did not match. Trace each parameter update carefully."
 elements:
   - type: parameter
     location:
